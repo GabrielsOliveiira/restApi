@@ -1,47 +1,59 @@
 from main.models.user import User
 from main.extensions import db
+from werkzeug.security import generate_password_hash
 
-def create_user(data): 
+def validate_user_data(data):
     required_fields = ["name", "email", "senha"]
 
     if not data:
-        return {
-            "error": "Nenhum dado foi enviado"
-            }, 400
+            raise ValueError(f"Nenhum dado foi enviado")
     
     for field in required_fields:
         if field not in data:
-            return {
-                "error": f"Preencha '{field}' antes de enviar"
-            }, 400
+            raise ValueError(f"O campo '{field} é obrigatório'")
         
         if not data.get(field):
-            return {
-                "error": "Preencha todos os campos"
-            }
-        
-    name = data.get("name")
-    email = data.get("email")
-    senha = data.get("senha")
-    
-    if len(senha) <= 7:
-        return {
-            "error": "Senha deve ter no mínimo 8 números"
-        }, 400
-    
-    if len(name)<= 2:
-        return {
-            "error": "Nome deve ter mais que 2 caracteres"
-        }, 400
+            raise ValueError("Preencha todos os campos")
 
+def email_exist(email):
+    email_exist = User.query.filter_by(email=email).first()
+
+    if (email_exist):
+        raise ValueError("Email já está sendo ultilizado")
+
+def business_rules_password(senha):
+    if len(senha) <= 7:
+        raise ValueError("Senha deve ter no mínimo 8 números")
+    
+def business_rules_name(name):
+    if len(name) < 3:
+        raise ValueError("Nome deve ter mais que 2 caracteres")
+    
+def build_user(data):
     user = User(
-        name=name,
-        email=email,
-        password=senha
+        name = data["name"],
+        email=data["email"],
+        password=generate_password_hash(data["senha"])
     )
+
+    return user
+
+def save_user(user):
 
     db.session.add(user)
     db.session.commit()
+
+def create_user(data): 
+    
+    validate_user_data(data)
+
+    email_exist(data["email"])
+    
+    business_rules_password(data["senha"])
+
+    business_rules_name(data["name"])
+
+    save_user(build_user(data))
 
     return {
         "message": "Usuário criado com sucesso!"

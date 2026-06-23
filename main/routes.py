@@ -8,7 +8,13 @@ homepage = Blueprint("homepage", __name__)
 def user():
     data = request.get_json()
 
-    return create_user(data)
+    try: 
+        return create_user(data)
+    
+    except ValueError as error:
+        return {
+        "error": str(error)
+        }
 
 @homepage.get("/users")
 def list_users():
@@ -20,8 +26,7 @@ def list_users():
         result.append({
          "id": i.id,
          "name": i.name,
-         "email": i.email,
-         "password": i.password
+         "email": i.email
         })
 
-    return result
+    return result, 200
