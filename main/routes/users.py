@@ -1,10 +1,10 @@
 from flask import Blueprint, request
-from .services import create_user
-from .models.user import User
+from ..services.services import create_user
+from ..models.user import User
 
-homepage = Blueprint("homepage", __name__)
+users_bp = Blueprint("users", __name__, url_prefix="/users")
 
-@homepage.post("/users")
+@users_bp.post("")
 def user():
     data = request.get_json()
 
@@ -16,7 +16,7 @@ def user():
         "error": str(error)
         }
 
-@homepage.get("/users")
+@users_bp.get("")
 def list_users():
     users = User.query.all()
 

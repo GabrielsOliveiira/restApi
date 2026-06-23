@@ -1,17 +1,22 @@
 from flask import Flask
-from .extensions import db, migrate
+
+from.config import Config   
+from .extensions import db, migrate, jwt
 
 def create_app():
     app = Flask(__name__)
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///fincance.db"
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config.from_object(Config)
 
     db.init_app(app)
     migrate.init_app(app, db)
+    jwt.init_app(app)
 
-    from .routes import homepage
+    from .routes.users import users_bp
+    from .routes.auth import auth_bp
     from . import models
-    app.register_blueprint(homepage)
+
+    app.register_blueprint(users_bp)
+    app.register_blueprint(auth_bp)
 
     return app
