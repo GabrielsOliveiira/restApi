@@ -3,18 +3,18 @@ def validate_transaction(transaction: dict) -> bool:
 
     for field in required_fields:
         if field not in transaction:
-            return False
+            raise ValueError(f"Missing required field: {field}")
     
     if not isinstance(transaction["amount"], (int, float)) or transaction["amount"] <= 0:
-        return False
+        raise ValueError("Amount must be a positive number.")
     
     if not isinstance(transaction["description"], str) or not transaction["description"].strip():
-        return False
+        raise ValueError("Description must be a non-empty string.")
 
     if not isinstance(transaction["type_of"], str) or not transaction["type_of"].strip() or transaction["type_of"] not in ["income", "expense"]:
-        return False
+        raise ValueError("Type_of must be either 'income' or 'expense'.")
 
     if not isinstance(transaction["category"], str) or not transaction["category"].strip() or transaction["category"] not in ["food", "transportation", "entertainment", "utilities", "health", "other"]:
-        return False
+        raise ValueError("Category must be a valid option.")
 
     return True

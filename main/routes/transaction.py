@@ -14,8 +14,10 @@ def create_transaction():
     data = request.get_json()
     user_id = get_jwt_identity()
 
-    if not validate_transaction(data):
-        return {"message": "Dados inválidos para a transação"}, 400
+    try:
+        validate_transaction(data)
+    except Exception as e:
+        return {"error": str(e)}, 400
 
     return add_transaction(data, user_id)
 
