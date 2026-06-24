@@ -10,3 +10,5 @@ class User(db.Model):
     email = db.Column(db.String(120), nullable=False)
 
     password = db.Column(db.String(255), nullable=False)
+
+    transactions = db.relationship("Transaction", backref="user", lazy=True, cascade="all, delete-orphan")
