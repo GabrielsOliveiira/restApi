@@ -15,6 +15,6 @@ def validate_transaction(transaction: dict) -> bool:
         raise ValueError("Type_of must be either 'income' or 'expense'.")
 
     if not isinstance(transaction["category"], str) or not transaction["category"].strip() or transaction["category"] not in ["food", "transportation", "entertainment", "utilities", "health", "other"]:
-        raise ValueError("Category must be a valid option.")
+        raise ValueError("Category must be 'food', 'transportation', 'entertainment', 'utilities', 'health', or 'other'.")
 
     return True
