@@ -1,5 +1,6 @@
 from main import db
 from main.models.goal import Goal
+from main.services.statistics_goals import porcentage_progress
 
 def save_goal(goal, type="add"):
     if type == "add":
@@ -13,6 +14,13 @@ def save_goal(goal, type="add"):
 def goal_service(user_id):
     goals = [goal.to_dict() for goal in db.session.query(Goal).filter_by(user_id=user_id).all()]
     return {"goals": goals}
+
+def get_goal_by_id_service(user_id, goal_id):
+    goal = db.session.query(Goal).filter_by(id=goal_id, user_id=user_id).first()
+    if not goal:
+        return {"message": "Goal not found"}, 404
+
+    return goal.to_dict()
 
 def create_goal_service(user_id, data):
     goal = Goal(
@@ -44,5 +52,11 @@ def delete_goal_service(user_id, goal_id):
         return {"message": "Goal not found"}, 404
     
     save_goal(goal, type="delete")
-    
+
     return {"message": "Goal deleted successfully"}
+
+def get_goal_details_service(user_id, goal_id):
+    
+    return {
+        "progress": porcentage_progress(goal_id, user_id),
+    }

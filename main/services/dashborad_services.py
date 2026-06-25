@@ -4,7 +4,6 @@ from datetime import datetime
 from main.services.statistcs import last_transaction, show_by_expense_category, show_by_expense_date, show_by_income_category, show_by_income_date, total_expense, total_income, total_transactions
 
 def dashboard_service(user_id):
-    transactions = Transaction.query.filter_by(user_id=user_id).all()
 
     return {
         "total_income": total_income(user_id),
