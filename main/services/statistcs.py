@@ -48,6 +48,9 @@ def total_income(user_id):
 
     return sum(t.amount for t in transactions if t.type_of == "income")
 
+def balance(user_id):
+    return total_income(user_id) - total_expense(user_id)
+
 def total_transactions(user_id):
     transactions = Transaction.query.filter_by(user_id=user_id).all()
 

@@ -1,5 +1,6 @@
 from main import db
 from main.models.goal import Goal
+from main.services.statistcs import balance
 from main.services.statistics_goals import porcentage_progress
 
 def save_goal(goal, type="add"):
@@ -56,7 +57,11 @@ def delete_goal_service(user_id, goal_id):
     return {"message": "Goal deleted successfully"}
 
 def get_goal_details_service(user_id, goal_id):
-    
+    target_amount = get_goal_by_id_service(user_id, goal_id)["target_amount"]
+
     return {
         "progress": porcentage_progress(goal_id, user_id),
+        "goal": target_amount,
+        "balance": balance(user_id),
+        "remaining": abs(target_amount - balance(user_id))
     }

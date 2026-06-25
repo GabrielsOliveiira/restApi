@@ -15,3 +15,4 @@ def porcentage_progress(goal_id, user_id):
     percentage = min((balance / goal.target_amount) * 100, 100) if goal.target_amount > 0 else 0
 
     return f"{round(percentage, 2)}%"
+
