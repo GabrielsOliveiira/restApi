@@ -12,3 +12,5 @@ class User(db.Model):
     password = db.Column(db.String(255), nullable=False)
 
     transactions = db.relationship("Transaction", backref="user", lazy=True, cascade="all, delete-orphan")
+
+    goals = db.relationship("Goal", backref="user", lazy=True, cascade="all, delete-orphan")
