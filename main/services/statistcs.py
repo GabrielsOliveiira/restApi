@@ -66,3 +66,6 @@ def last_transaction(user_id, how_many=1):
         }
     else:
         return None
+    
+def date_menager(created_at):
+    return created_at.strftime('%d/%m/%Y')
