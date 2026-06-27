@@ -1,3 +1,5 @@
+import { validar } from "./validations.js";
+
 // async function buscarUsuarios() {
 //     const response = await fetch("http://127.0.0.1:5000/users", {
 //         method: "GET",
@@ -23,14 +25,24 @@
 
 
 const email = document.getElementById("email");
+const senha = document.getElementById("senha");
 
-const senha = document.getElementById("senha")
+
+const err = document.getElementById("err");
 
 const btnSubmit = document.getElementById("btnSubmit")
 
-btnSubmit.addEventListener("click", (event) =>{
+btnSubmit.addEventListener("click", (event) => {
     event.preventDefault();
-    console.log(email.value, senha.value)
+
+    try{
+        validar(email.value, senha.value)
+    } catch (error) {
+        err.textContent = error
+        console.log(error)
+    }
+    
+
 })
 
 
