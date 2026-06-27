@@ -20,3 +20,9 @@ services:
 
     ports:
     - "6379:6379"
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "5173:5173"
