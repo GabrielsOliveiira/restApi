@@ -11,12 +11,15 @@ migrate = Migrate()
 jwt = JWTManager()
 
 def rate_limit_key():
-    verify_jwt_in_request(optional=True)
 
-    user_id = get_jwt_identity()
-    
-    if user_id:
-        return f"User:{user_id}"
+    try:
+        verify_jwt_in_request(optional=True)
+        user_id = get_jwt_identity()
+        
+        if user_id:
+            return f"User:{user_id}"
+    except:
+        pass
 
     return get_remote_address()
 
