@@ -1,0 +1,22 @@
+services:
+  api:
+    build: .
+    container_name: Finance-api
+
+    ports:
+      - "5000:5000"
+
+    volumes:
+      - .:/main
+
+    command: python run.py
+
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7
+    container_name: finance-redis
+
+    ports:
+    - "6379:6379"

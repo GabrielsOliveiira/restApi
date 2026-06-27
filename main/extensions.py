@@ -10,14 +10,13 @@ migrate = Migrate()
 jwt = JWTManager()
 
 def rate_limit_key():
-    try:
-        verify_jwt_in_request(optional=True)
-        user_id = get_jwt_identity()
-        if user_id:
-            return f"User:{user_id}"
-    except Exception:
-        pass
+    verify_jwt_in_request(optional=True)
+
+    user_id = get_jwt_identity()
+    
+    if user_id:
+        return f"User:{user_id}"
 
     return get_remote_address()
 
-limiter = Limiter(key_func=rate_limit_key, default_limits=["5 per minute"])
+limiter = Limiter(key_func=rate_limit_key, storage_uri="redis://redis:6379", default_limits=["5 per minute"], )
