@@ -1,4 +1,5 @@
 import { validar } from "./validations.js";
+import { sendApi } from "./api.js";
 
 // async function buscarUsuarios() {
 //     const response = await fetch("http://127.0.0.1:5000/users", {
@@ -37,6 +38,9 @@ btnSubmit.addEventListener("click", (event) => {
 
     try{
         validar(email.value, senha.value)
+        let reposta = sendApi(email.value, senha.value).then(resposta => {
+            console.log(resposta)
+        })
     } catch (error) {
         err.textContent = error
         console.log(error)
