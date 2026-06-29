@@ -1,5 +1,6 @@
 import { validar } from "./validations.js";
-import { sendApi } from "./api.js";
+import { sendApi } from "./api/api.js";
+import { showErr } from "./ui/messages.js";
 
 // async function buscarUsuarios() {
 //     const response = await fetch("http://127.0.0.1:5000/users", {
@@ -28,22 +29,26 @@ import { sendApi } from "./api.js";
 const email = document.getElementById("email");
 const senha = document.getElementById("senha");
 
-
-const err = document.getElementById("err");
-
 const btnSubmit = document.getElementById("btnSubmit")
 
-btnSubmit.addEventListener("click", (event) => {
+btnSubmit.addEventListener("click", async (event) => {
     event.preventDefault();
 
     try{
         validar(email.value, senha.value)
-        let reposta = sendApi(email.value, senha.value).then(resposta => {
-            console.log(resposta)
-        })
+
+        let respostaTexto = await sendApi(email.value, senha.value)
+        let resposta = JSON.parse(respostaTexto)
+
+        if (resposta.error){
+            showErr(resposta.error)
+        } else {
+        localStorage.setItem("token", resposta.acess_token);
+        window.location.href = "me.html";
+        }
+
     } catch (error) {
-        err.textContent = error
-        console.log(error)
+        showErr(error)
     }
     
 

@@ -7,12 +7,12 @@ def login(data):
 
     if not user:
         return {
-            "error": "Email ou senha inválidos"
+            "error": "Email ou senha invalidos"
         }, 401
 
     if not check_password_hash(user.password, data["senha"]):
         return {
-            "error": "Email ou senha inválidos"
+            "error": "Email ou senha invalidos"
         }, 401
     
     token = create_access_token(identity=str(user.id))
