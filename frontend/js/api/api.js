@@ -16,7 +16,7 @@ async function sendApi(email, senha) {
     return text
 }
 
-async function pageTransactions(token) {
+async function getTransactions(token) {
     const response = await fetch("http://127.0.0.1:5000/transactions", {
         method: "GET",
         headers: {
@@ -27,4 +27,16 @@ async function pageTransactions(token) {
     return response
 }
 
-export { sendApi, pageTransactions }
+
+async function getGoal(token) {
+    const response = await fetch("http://127.0.0.1:5000/goal", {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+        }
+    })
+    return response
+}
+
+export { sendApi, getTransactions, getGoal }
