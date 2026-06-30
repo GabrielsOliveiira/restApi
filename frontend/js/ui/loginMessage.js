@@ -11,3 +11,4 @@ function showErr(message){
 }
 
 export  {showErr }
+

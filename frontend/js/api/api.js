@@ -16,14 +16,15 @@ async function sendApi(email, senha) {
     return text
 }
 
-async function pageProfile(token) {
-    const response = await fetch("http://127.0.0.1:5000/auth/me", {
+async function pageTransactions(token) {
+    const response = await fetch("http://127.0.0.1:5000/transactions", {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
         }
     })
+    return response
 }
 
-export { sendApi, pageProfile }
+export { sendApi, pageTransactions }

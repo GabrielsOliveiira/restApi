@@ -23,6 +23,7 @@ def rate_limit_key():
 
     return get_remote_address()
 
+
 limiter = Limiter(
     key_func=rate_limit_key,
     storage_uri=os.getenv("REDIS_URL"),
