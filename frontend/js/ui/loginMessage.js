@@ -10,5 +10,5 @@ function showErr(message){
     err.textContent = message
 }
 
-export  {showErr }
+export  { showErr }
 

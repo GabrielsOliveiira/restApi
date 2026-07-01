@@ -1,4 +1,4 @@
-import { validar } from "./validations.js";
+import { validar } from "./validations/validations.js";
 import { sendApi } from "./api/api.js";
 import { showErr } from "./ui/loginMessage.js";
 

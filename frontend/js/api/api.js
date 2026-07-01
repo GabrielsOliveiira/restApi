@@ -41,6 +41,18 @@ async function getTransactions(token) {
     return response
 }
 
+async function sendTransaction(token, transaction) {
+    const response = await fetch("http://127.0.0.1:5000/transactions", {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(transaction)
+    })
+    return response
+}
+
 async function getGoal(token) {
     const response = await fetch("http://127.0.0.1:5000/goal", {
         method: "GET",
@@ -52,4 +64,4 @@ async function getGoal(token) {
     return response
 }
 
-export { sendApi, getTransactions, getGoal, getUser }
+export { sendApi, getTransactions, sendTransaction, getGoal, getUser }

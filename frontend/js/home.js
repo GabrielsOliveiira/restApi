@@ -23,3 +23,8 @@ getGoal(token).then(async (resposta) =>{
 
     loadList(resGoalObj.goals, "goal")
 })
+
+const btnAddTr = document.getElementById("btnAddTr")
+btnAddTr.addEventListener("click", () => {
+    window.location.href = "addTransaction.html"
+})
