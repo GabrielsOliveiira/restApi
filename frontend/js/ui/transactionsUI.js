@@ -21,7 +21,7 @@ function addLiGo(goal){
     const newLi = document.createElement("li");
     newLi.dataset.idGo = goal.id
     newLi.innerHTML = `
-    <p>${name}</p>
+    <p>${goal.name}</p>
     <p>Meta: ${goal.target_amount}</p>
     <p>Criado em: ${new Date(goal.created_at).toLocaleDateString("pt-BR")}</p>
     <p>${goal.is_completed == true ? "Finalizado" : "Em andamento    "}</p>

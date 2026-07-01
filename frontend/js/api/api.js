@@ -16,6 +16,20 @@ async function sendApi(email, senha) {
     return text
 }
 
+async function getUser(token) {
+    const response = await fetch("http://127.0.0.1:5000/users", {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+        }
+    })
+    const text = await response.text();
+    const objResponse = JSON.parse(text)
+
+    return objResponse
+}
+
 async function getTransactions(token) {
     const response = await fetch("http://127.0.0.1:5000/transactions", {
         method: "GET",
@@ -26,7 +40,6 @@ async function getTransactions(token) {
     })
     return response
 }
-
 
 async function getGoal(token) {
     const response = await fetch("http://127.0.0.1:5000/goal", {
@@ -39,4 +52,4 @@ async function getGoal(token) {
     return response
 }
 
-export { sendApi, getTransactions, getGoal }
+export { sendApi, getTransactions, getGoal, getUser }

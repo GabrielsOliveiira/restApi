@@ -20,7 +20,7 @@ btnSubmit.addEventListener("click", async (event) => {
             showErr(resposta.error)
         } else {
         localStorage.setItem("token", resposta.acess_token);
-        window.location.href = "transactions.html";
+        window.location.href = "home.html";
         }
 
     } catch (error) {

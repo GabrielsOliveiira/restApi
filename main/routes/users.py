@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from ..services.services import create_user
 from ..models.user import User
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 users_bp = Blueprint("users", __name__, url_prefix="/users")
 
@@ -17,16 +18,9 @@ def user():
         }
 
 @users_bp.get("")
+@jwt_required()
 def list_users():
-    users = User.query.all()
+    user_id = get_jwt_identity()
+    user = User.query.filter_by(id=user_id).first()
 
-    result = []
-
-    for i in users:
-        result.append({
-         "id": i.id,
-         "name": i.name,
-         "email": i.email
-        })
-
-    return result, 200
+    return user.to_dict(), 200
