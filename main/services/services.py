@@ -2,6 +2,7 @@ from main.models.user import User
 from main.extensions import db
 from werkzeug.security import generate_password_hash
 
+
 def validate_user_data(data):
     required_fields = ["name", "email", "senha"]
 
@@ -54,7 +55,3 @@ def create_user(data):
     business_rules_name(data["name"])
 
     save_user(build_user(data))
-
-    return {
-        "message": "Usuário criado com sucesso!"
-    }

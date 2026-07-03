@@ -3,17 +3,18 @@ import { loadName } from "./ui/transactionsUI.js";
 import { loadList } from "./funcs/funcList.js";
 import { getUser } from "./api/api.js";
 
+
 let token = localStorage.getItem("token")
 
 getTransactions(token).then(async resposta => {
     const resTransaction = await resposta.text()
     const resTransactionObj = JSON.parse(resTransaction)
-
+    
     let nome = await getUser(token)
-
+    
     loadName(`Bem vindo ${nome.name} !!!`)
     loadList(resTransactionObj, "transaction")
-
+    
 });
 
 

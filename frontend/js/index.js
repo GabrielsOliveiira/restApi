@@ -6,6 +6,7 @@ const email = document.getElementById("email");
 const senha = document.getElementById("senha");
 
 const btnSubmit = document.getElementById("btnSubmit")
+const btnCadastrar = document.getElementById("cadastrar");
 
 btnSubmit.addEventListener("click", async (event) => {
     event.preventDefault();
@@ -19,15 +20,17 @@ btnSubmit.addEventListener("click", async (event) => {
         if (resposta.error){
             showErr(resposta.error)
         } else {
-        localStorage.setItem("token", resposta.acess_token);
-        window.location.href = "home.html";
+            localStorage.setItem("token", resposta.acess_token);
+            window.location.href = "home.html";
         }
 
     } catch (error) {
         showErr(error)
     }
-    
-
 })
 
+btnCadastrar.addEventListener("click", async (event) => {
+    event.preventDefault();
+    window.location.href = "cadastro.html";
+})
 

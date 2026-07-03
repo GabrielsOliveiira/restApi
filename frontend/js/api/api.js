@@ -64,4 +64,17 @@ async function getGoal(token) {
     return response
 }
 
-export { sendApi, getTransactions, sendTransaction, getGoal, getUser }
+async function createUser(name, email, senha) {
+    const response = await fetch("http://127.0.0.1:5000/users", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({name, email, senha})
+    })
+    const text = await response.text();
+    const objResponse = JSON.parse(text)
+    return objResponse
+}
+
+export { sendApi, getTransactions, sendTransaction, getGoal, getUser, createUser }
