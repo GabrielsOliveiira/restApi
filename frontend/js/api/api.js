@@ -53,6 +53,17 @@ async function sendTransaction(token, transaction) {
     return response
 }
 
+async function deleteTransaction(token, id){
+    const response = await fetch(`http://127.0.0.1:5000/transactions/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+        },
+    })
+    return response
+}
+
 async function getGoal(token) {
     const response = await fetch("http://127.0.0.1:5000/goal", {
         method: "GET",
@@ -80,6 +91,17 @@ async function createGoal(token, data) {
     return response
     }
 
+async function deleteGoal(token, id){
+    const response = await fetch(`http://127.0.0.1:5000/goal/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+        },
+    })
+    return response
+}
+
 async function createUser(name, email, senha) {
     const response = await fetch("http://127.0.0.1:5000/users", {
         method: "POST",
@@ -93,4 +115,4 @@ async function createUser(name, email, senha) {
     return objResponse
 }
 
-export { sendApi, getTransactions, sendTransaction, getGoal, createGoal, getUser, createUser }
+export { sendApi, getTransactions, sendTransaction, deleteTransaction, getGoal, createGoal, deleteGoal, getUser, createUser }
