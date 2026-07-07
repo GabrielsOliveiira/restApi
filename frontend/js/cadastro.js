@@ -29,8 +29,3 @@ btnSubmit.addEventListener("click", async (e) => {
         showErr(error);
     }
 })
-
-btnVoltar.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.location.href = "index.html";
-})

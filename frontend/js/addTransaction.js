@@ -5,8 +5,6 @@ import { showErr } from "./ui/loginMessage.js"
 let token = localStorage.getItem("token")
 const transaction = document.getElementById("btnSubmit")
 
-console.log(typeof(parseFloat(document.getElementById("value").value)))
-
 
 transaction.addEventListener("click", async (e) => {
     e.preventDefault()

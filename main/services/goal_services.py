@@ -2,6 +2,7 @@ from main import db
 from main.models.goal import Goal
 from main.services.statistcs import balance
 from main.services.statistics_goals import porcentage_progress
+from datetime import datetime
 
 def save_goal(goal, type="add"):
     if type == "add":
@@ -24,6 +25,14 @@ def get_goal_by_id_service(user_id, goal_id):
     return goal.to_dict()
 
 def create_goal_service(user_id, data):
+
+    if data.get("dead_line"):
+        try:
+            data["dead_line"] = datetime.strptime(data["dead_line"], "%Y-%m-%d").date()
+        except ValueError:
+            return {"error": "Invalid date format. Use YYYY-MM-DD."}, 400
+
+
     goal = Goal(
         name=data["name"],
         target_amount=data["target_amount"],

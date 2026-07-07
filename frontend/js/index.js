@@ -1,4 +1,4 @@
-import { validar } from "./validations/validations.js";
+import { validar } from "./validations/validate_user.js";
 import { sendApi } from "./api/api.js";
 import { showErr } from "./ui/loginMessage.js";
 
@@ -28,9 +28,3 @@ btnSubmit.addEventListener("click", async (event) => {
         showErr(error)
     }
 })
-
-btnCadastrar.addEventListener("click", async (event) => {
-    event.preventDefault();
-    window.location.href = "cadastro.html";
-})
-

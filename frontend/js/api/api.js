@@ -64,6 +64,22 @@ async function getGoal(token) {
     return response
 }
 
+async function createGoal(token, data) {
+    if (!data["dead_line"]){
+        const { dead_line, ...newData } = data
+        data = newData
+    }
+    const response = await fetch("http://127.0.0.1:5000/goal", {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+        })
+    return response
+    }
+
 async function createUser(name, email, senha) {
     const response = await fetch("http://127.0.0.1:5000/users", {
         method: "POST",
@@ -77,4 +93,4 @@ async function createUser(name, email, senha) {
     return objResponse
 }
 
-export { sendApi, getTransactions, sendTransaction, getGoal, getUser, createUser }
+export { sendApi, getTransactions, sendTransaction, getGoal, createGoal, getUser, createUser }
