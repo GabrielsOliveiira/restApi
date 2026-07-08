@@ -1,6 +1,6 @@
 import { validate_goal_data } from './validations/validate_goal.js'
 import { createGoal } from './api/api.js'
-import { showErr } from './ui/loginMessage.js'
+import { showErr } from './services/load.js'
 
 const name_goal = document.getElementById('name')
 const target_amount = document.getElementById('target_amount')

@@ -1,6 +1,6 @@
 import { sendTransaction } from "./api/api.js"
 import { validateTransaction } from "./validations/validate_transaction.js"
-import { showErr } from "./ui/loginMessage.js"
+import { showErr } from "./services/load.js"
 
 let token = localStorage.getItem("token")
 const transaction = document.getElementById("btnSubmit")

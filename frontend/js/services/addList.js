@@ -1,10 +1,5 @@
-const named = document.getElementById("name")
 const listTr = document.getElementById("listTr")
 const listGo = document.getElementById("listGo")
-
-function loadName(load){
-    named.textContent = load
-}
 
 function addLiTr(transaction){
     const newLi = document.createElement("li");
@@ -26,10 +21,10 @@ function addLiGo(goal){
     <p>Meta: ${goal.target_amount}</p>
     <p>Criado em: ${new Date(goal.created_at).toLocaleDateString("pt-BR")}</p>
     <p>Data limite: ${goal.dead_line ? new Date(goal.dead_line).toLocaleDateString("pt-BR") : "Sem data marcada"}</p>
-    <p>${goal.is_completed == true ? "Finalizado" : "Em andamento    "}</p>
+    <p>${goal.is_completed == true ? "Finalizado" : "Em andamento"}<button>${goal.is_completed == true ? "Desmarcar" : "Completar"}</button></p>
     <button type="button" class="btn-delete" id="${goal.id}">Delete</button>
     `
     listGo.append(newLi)
 }
 
-export { loadName, addLiTr, addLiGo }
+export { addLiTr, addLiGo }

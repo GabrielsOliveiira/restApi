@@ -46,8 +46,11 @@ def create_goal():
 def update_goal(goal_id):
     user_id = get_jwt_identity()
     data = request.get_json()
-
-    return update_goal_service(user_id, goal_id, data)
+    try:
+        validate_goal_data(data)
+        return update_goal_service(user_id, goal_id, data)
+    except ValueError as e:
+        return {"error": str(e)}, 400
 
 @goal_bp.delete("/<int:goal_id>")
 @jwt_required()

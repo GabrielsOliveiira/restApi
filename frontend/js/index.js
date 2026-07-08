@@ -1,6 +1,6 @@
 import { validar } from "./validations/validate_user.js";
 import { sendApi } from "./api/api.js";
-import { showErr } from "./ui/loginMessage.js";
+import { showErr } from "./services/load.js";
 
 const email = document.getElementById("email");
 const senha = document.getElementById("senha");

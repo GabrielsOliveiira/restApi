@@ -89,7 +89,18 @@ async function createGoal(token, data) {
         body: JSON.stringify(data)
         })
     return response
-    }
+}
+
+async function updateGoal(token, data, id){
+    const response = await fetch(`http://127.0.0.1:5000/goal/${id}`, {
+        method: "PUT",
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+}
 
 async function deleteGoal(token, id){
     const response = await fetch(`http://127.0.0.1:5000/goal/${id}`, {

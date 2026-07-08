@@ -1,5 +1,5 @@
 import { createUser } from "./api/api.js";
-import { showErr } from "./ui/loginMessage.js";
+import { showErr } from "./services/load.js";
 
 const name = document.getElementById("name");
 const email = document.getElementById("email");
