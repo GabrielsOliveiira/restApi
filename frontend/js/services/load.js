@@ -8,5 +8,13 @@ function showErr(message){
     err.textContent = message
 }
 
-export  { showErr, loadName }
+function is_completed(id){
+    const is_completedP = document.getElementById(`is_completed-${id}`)
+    const is_completedButton = document.getElementById(id)
+
+    is_completedP.textContent = is_completedP.textContent == "Finalizado" ? "Em andamento" : "Finalizado"
+    is_completedButton.textContent = is_completedButton.textContent == "Completar" ? "Desmarcar" : "Completar"
+}
+
+export  { showErr, loadName, is_completed }
 

@@ -1,6 +1,9 @@
-import { deleteGoal, deleteTransaction } from "../api/api.js"
+import { deleteGoal, deleteTransaction, updateGoal } from "../api/api.js"
+import { GoalUpdateEventDealer } from "../api/GoalUpdateEventDealer.js"
+import { is_completed } from "./load.js"
 
 const ulGo = document.getElementById("listGo")
+const ulTr = document.getElementById("listTr")
 
 
 function deleteDealer(resposta, li){
@@ -12,7 +15,6 @@ function deleteDealer(resposta, li){
 }
 
 async function addGoalDeleteEvent(token){
-    const ulGo = document.getElementById("listGo")
     const lisGo = ulGo.querySelectorAll("li")
 
     lisGo.forEach(li => {
@@ -24,8 +26,19 @@ async function addGoalDeleteEvent(token){
     })
 }
 
+async function addGoalUpdateEvent(token){
+    const lisGo = ulGo.querySelectorAll("li")
+
+    lisGo.forEach(li => {
+        const button = li.querySelector(".completed")
+        button.addEventListener("click", async (event) => {
+            GoalUpdateEventDealer(token, button.id)
+            is_completed(button.id)
+        })
+    })
+}
+
 async function addTrDeleteEvent(token){
-    const ulTr = document.getElementById("listTr")
     const lisTr = ulTr.querySelectorAll("li")
 
     lisTr.forEach(li => {
@@ -37,4 +50,5 @@ async function addTrDeleteEvent(token){
     })
 }
 
-export { addGoalDeleteEvent, addTrDeleteEvent }
+
+export { addGoalDeleteEvent, addTrDeleteEvent, addGoalUpdateEvent }

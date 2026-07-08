@@ -1,5 +1,5 @@
 import { getTransactions, getGoal, getUser, deleteGoal, deleteTransaction } from "./api/api.js"
-import { addGoalDeleteEvent, addTrDeleteEvent } from "./services/deleteItem.js";
+import { addGoalDeleteEvent, addTrDeleteEvent, addGoalUpdateEvent } from "./services/addEvent.js";
 import { loadName } from "./services/load.js";
 import { loadList } from "./ui/funcList.js";
 
@@ -10,6 +10,9 @@ let token = localStorage.getItem("token")
 
 const ulGo = document.getElementById("listGo")
 const ulTr = document.getElementById("listTr")
+
+let nome = await getUser(token)
+loadName(`Bem vindo ${nome.name} !!!`)
 
 
 if (!token) {
@@ -27,11 +30,8 @@ getTransactions(token).then(async resposta => {
 
     if (resTransactionObj.length > 0) {
         transactionsLabel.textContent = "Transações:"
-    }
+    }    
     
-    let nome = await getUser(token)
-    
-    loadName(`Bem vindo ${nome.name} !!!`)
     loadList(resTransactionObj, "transaction")
     addTrDeleteEvent(token)
 });
@@ -51,5 +51,5 @@ getGoal(token).then(async (resposta) =>{
     }
     loadList(resGoalObj.goals, "goal")
     addGoalDeleteEvent(token)
-    
+    addGoalUpdateEvent(token)
 })

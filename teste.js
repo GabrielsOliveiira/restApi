@@ -1,12 +1,9 @@
 let data = {
     "name": "name",
-    "target_amount": 1000,
+    "target_amount": true,
     "dead_line": ""
 }
 
-if (!data["dead_line"]) {
-    const { dead_line, ...newData } = data
-    data = newData
-}
+let res = {...data, target_amount: !data.target_amount}
 
-console.log(JSON.stringify(data))
+console.log(res)
