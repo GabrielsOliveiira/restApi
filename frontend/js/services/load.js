@@ -16,5 +16,24 @@ function is_completed(id){
     is_completedButton.textContent = is_completedButton.textContent == "Completar" ? "Desmarcar" : "Completar"
 }
 
-export  { showErr, loadName, is_completed }
+function loadMetasLabel(){
+    let goalsLabel = document.getElementById("goalsLabel")
+
+    const ulGo = document.getElementById("listGo")
+    const tamUl = ulGo.querySelectorAll("li").length
+    
+    goalsLabel.textContent = tamUl == 0 ? "" : "Metas:"
+
+}
+
+function loadTransctionsLabel(){
+    let transactionsLabel = document.getElementById("transactionsLabel")
+
+    const ulTr = document.getElementById("listTr")
+    const tamTr = ulTr.querySelectorAll("li").length
+
+    transactionsLabel.textContent = tamTr == 0 ? "" : "Transações:"
+}
+
+export  { showErr, loadName, is_completed, loadMetasLabel, loadTransctionsLabel }
 

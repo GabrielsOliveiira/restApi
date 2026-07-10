@@ -27,14 +27,14 @@ function validar(email, senha)
 {
     if (!checkEmail(email))
     {
-        throw "Email inválido"
+        throw "Senha e/ou email incorreto"
     }
 
     let resultSenha = checkSenha(senha)
 
     if (resultSenha != true)
        {
-        throw resultSenha
+        throw "Senha e/ou email incorreto"
        }
 }
 

@@ -1,7 +1,8 @@
 import { getTransactions, getGoal, getUser, deleteGoal, deleteTransaction } from "./api/api.js"
 import { addGoalDeleteEvent, addTrDeleteEvent, addGoalUpdateEvent } from "./services/addEvent.js";
-import { loadName } from "./services/load.js";
+import { loadName, loadTransctionsLabel } from "./services/load.js";
 import { loadList } from "./ui/funcList.js";
+import { loadMetasLabel } from "./services/load.js";
 
 let goalsLabel = document.getElementById("goalsLabel")
 let transactionsLabel = document.getElementById("transactionsLabel")
@@ -27,12 +28,9 @@ getTransactions(token).then(async resposta => {
         localStorage.removeItem("token")
         window.location.href = "index.html"
     }
-
-    if (resTransactionObj.length > 0) {
-        transactionsLabel.textContent = "Transações:"
-    }    
     
     loadList(resTransactionObj, "transaction")
+    loadTransctionsLabel()
     addTrDeleteEvent(token)
 });
 
@@ -46,10 +44,8 @@ getGoal(token).then(async (resposta) =>{
         window.location.href = "index.html"
     }
 
-    if (resGoalObj.goals.length > 0) {
-        goalsLabel.textContent = "Metas:"
-    }
     loadList(resGoalObj.goals, "goal")
+    loadMetasLabel()
     addGoalDeleteEvent(token)
     addGoalUpdateEvent(token)
 })

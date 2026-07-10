@@ -4,6 +4,9 @@ let data = {
     "dead_line": ""
 }
 
-let res = {...data, target_amount: !data.target_amount}
+// let res = {...data, target_amount: !data.target_amount}
 
-console.log(res)
+
+
+
+console.log(data.length)
