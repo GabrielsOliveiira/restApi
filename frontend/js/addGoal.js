@@ -1,5 +1,5 @@
 import { validate_goal_data } from './validations/validate_goal.js'
-import { createGoal } from './api/api.js'
+import { createGoal, checkToken } from './api/api.js'
 import { showErr } from './services/load.js'
 
 const name_goal = document.getElementById('name')
@@ -12,6 +12,7 @@ const token = localStorage.getItem("token")
 
 submit.addEventListener('click', async (e) => {
     e.preventDefault()
+    checkToken()
     
     let dead_line = document.getElementById('dead_line')
     dead_line = is_active.checked ? false : dead_line.value

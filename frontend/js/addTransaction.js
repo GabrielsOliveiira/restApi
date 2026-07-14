@@ -1,4 +1,4 @@
-import { sendTransaction } from "./api/api.js"
+import { sendTransaction, checkToken } from "./api/api.js"
 import { validateTransaction } from "./validations/validate_transaction.js"
 import { showErr } from "./services/load.js"
 
@@ -8,6 +8,7 @@ const transaction = document.getElementById("btnSubmit")
 
 transaction.addEventListener("click", async (e) => {
     e.preventDefault()
+    checkToken()
 
     const newTransaction = {
         "amount": parseFloat(document.getElementById("value").value),

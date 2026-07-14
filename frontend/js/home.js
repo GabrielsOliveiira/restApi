@@ -1,8 +1,7 @@
-import { getTransactions, getGoal, getUser, deleteGoal, deleteTransaction } from "./api/api.js"
+import { getTransactions, getGoal, getUser, deleteGoal, deleteTransaction, logout, checkToken } from "./api/api.js"
 import { addGoalDeleteEvent, addTrDeleteEvent, addGoalUpdateEvent } from "./services/addEvent.js";
-import { loadName, loadTransctionsLabel } from "./services/load.js";
+import { loadName } from "./services/load.js";
 import { loadList } from "./ui/funcList.js";
-import { loadMetasLabel } from "./services/load.js";
 
 let goalsLabel = document.getElementById("goalsLabel")
 let transactionsLabel = document.getElementById("transactionsLabel")
@@ -11,14 +10,12 @@ let token = localStorage.getItem("token")
 
 const ulGo = document.getElementById("listGo")
 const ulTr = document.getElementById("listTr")
+const left = document.getElementById("logout")
 
 let nome = await getUser(token)
 loadName(`Bem vindo ${nome.name} !!!`)
 
-
-if (!token) {
-    window.location.href = "index.html"
-}
+checkToken()
 
 getTransactions(token).then(async resposta => {
     const resTransaction = await resposta.text()
@@ -30,7 +27,6 @@ getTransactions(token).then(async resposta => {
     }
     
     loadList(resTransactionObj, "transaction")
-    loadTransctionsLabel()
     addTrDeleteEvent(token)
 });
 
@@ -40,12 +36,14 @@ getGoal(token).then(async (resposta) =>{
     const resGoalObj = JSON.parse(resGoal)
 
     if (resposta.status !== 200) {
-        localStorage.removeItem("token")
-        window.location.href = "index.html"
+        logout("index.html")
     }
 
     loadList(resGoalObj.goals, "goal")
-    loadMetasLabel()
     addGoalDeleteEvent(token)
     addGoalUpdateEvent(token)
+})
+
+left.addEventListener("click", (e) =>{
+    logout("index.html")
 })

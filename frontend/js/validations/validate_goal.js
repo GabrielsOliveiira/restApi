@@ -1,20 +1,20 @@
 function name_menager(name){
     if (typeof name !== "string" || name.trim() === ""){
-        throw new Error( "Nome deve ser uma string não vazia.")
+        throw new Error( "Preencha o nome")
     }
 
     if (name in ["", " ", undefined, null]){
-        throw new Error( "Nome não pode ser vazio ou nulo.")
+        throw new Error( "Nome não pode ser vazio")
     }
 
     if (name.length > 50 || name.length < 2){
-        throw new Error( "Nome deve ter entre 2 e 50 Characteres.") 
+        throw new Error( "Nome deve ter entre 2 e 50 Characteres") 
     }
 }
 
 function target_amount_menager(target_amount){
     if (typeof(target_amount) !== "number" || Number.isNaN(target_amount) || target_amount <= 0){
-        throw new Error( "O valor alvo deve ser um número positivo.")
+        throw new Error("O valor alvo deve ser um número positivo")
     }
 }
 
@@ -23,7 +23,7 @@ function fields_menager(data){
     
     for (const field of required_fields) {
         if (!(field in data)) {
-            throw new Error( `Missing required field: ${field}`)
+            throw new Error( `Preencha o campo: ${field}`)
         }
     }
 }

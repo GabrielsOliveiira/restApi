@@ -139,4 +139,19 @@ async function createUser(name, email, senha) {
     return objResponse
 }
 
-export { sendApi, getTransactions, sendTransaction, deleteTransaction, getGoal, createGoal, deleteGoal, updateGoal, getUser, createUser, getExpecificGoal }
+function logout(goTo="index.html"){
+    localStorage.removeItem("token")
+    if (goTo){
+        window.location.href = goTo
+    }
+}
+
+function checkToken(goTo="index.html"){
+    let token = localStorage.getItem("token")
+    if (!token) {
+        window.location.href = goTo
+        throw "Deslogado"
+    }
+}
+
+export { sendApi, getTransactions, sendTransaction, deleteTransaction, getGoal, createGoal, deleteGoal, updateGoal, getUser, createUser, getExpecificGoal, logout, checkToken }

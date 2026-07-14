@@ -1,4 +1,4 @@
-import { deleteGoal, deleteTransaction, updateGoal } from "../api/api.js"
+import { deleteGoal, deleteTransaction, updateGoal, checkToken } from "../api/api.js"
 import { GoalUpdateEventDealer } from "../api/GoalUpdateEventDealer.js"
 import { is_completed } from "./load.js"
 import { loadMetasLabel, loadTransctionsLabel } from "./load.js"
@@ -17,10 +17,11 @@ function deleteDealer(resposta, li){
 
 async function addGoalDeleteEvent(token){
     const lisGo = ulGo.querySelectorAll("li")
-
+    
     lisGo.forEach(li => {
         const button = li.querySelector(".btn-delete")
         button.addEventListener("click", async (event) => {
+            await checkToken()
             const resposta = await deleteGoal(token, button.id)
             deleteDealer(resposta, li)
             loadMetasLabel()
@@ -34,6 +35,7 @@ async function addGoalUpdateEvent(token){
     lisGo.forEach(li => {
         const button = li.querySelector(".completed")
         button.addEventListener("click", async (event) => {
+            await checkToken()
             GoalUpdateEventDealer(token, button.id)
             is_completed(button.id)
         })
@@ -42,9 +44,10 @@ async function addGoalUpdateEvent(token){
 
 async function addTrDeleteEvent(token){
     const lisTr = ulTr.querySelectorAll("li")
-
+    
     lisTr.forEach(li => {
         const button = li.querySelector(".btn-delete")
+        checkToken()
         button.addEventListener("click", async (event) => {
             const resposta = await deleteTransaction(token, button.id)
             deleteDealer(resposta, li)
