@@ -4,21 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="module" src="../js/addGoal.js"></script>
+    <link rel="stylesheet" href="../css/addGoal.css">
     <title>Adicione seu objetivo</title>
 </head>
 <body>
     <form>
+        <h1>Adicionar meta</h1>
+
         <label for="name">Nome</label>
         <input type="text" id="name">
         <label for="target_amount">Valor alvo</label>
         <input type="number" id="target_amount">
         <label for="dead_line">Data limite</label>
         <input type="date" id="dead_line">
-        <input type="checkbox" id="is_achieved">
-        <label for="is_achieved">Sem data definida</label>
+        <div class="is_active_div">
+            <input type="checkbox" id="is_achieved">
+            <label class="is_active_label" for="is_achieved">Sem data definida</label>
+        </div>
 
+        <a href="home.html" class="btn-voltar">Voltar</a>
         <button type="submit" id="btnSubmit">Adicionar</button>
-        <button type="button" id="btnVoltar"> <a href="home.html">Voltar</a></button>
+
         <p id="err"></p>
     </form>
 </body>

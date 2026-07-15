@@ -1,12 +1,19 @@
 const listTr = document.getElementById("listTr")
 const listGo = document.getElementById("listGo")
 
+function traduzir(categoria){
+    const ingles = ["food", "transportation", "entertainment", "utilities", "health", "other"]
+    const portugues = ["comida", "transporte", "entretenimento", "serviços essenciais", "saúde", "outro"]
+    return portugues[ingles.indexOf(categoria)]
+}
+
+
 function addLiTr(transaction){
     const newLi = document.createElement("li");
     newLi.dataset.id = transaction.id
     newLi.innerHTML = `
     <p>${transaction.type_of == "expense" ? "Gasto" : "Receita"} de: ${transaction.amount}</p>
-    <p>Categoria: ${transaction.category}</p>
+    <p>Categoria: ${traduzir(transaction.category)}</p>
     <p>Descrição: ${transaction.description}</p>
     <button type="button" class="btn-delete" id="${transaction.id}">Delete</button>
     `
