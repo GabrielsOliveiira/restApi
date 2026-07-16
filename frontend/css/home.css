@@ -43,6 +43,13 @@ li p {
     color: #444;
 }
 
+.nameGoal {
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
 button {
     padding: 10px 18px;
     border: none;
@@ -68,6 +75,10 @@ button {
 
 .btn-delete:hover {
     background: #c0392b;
+}
+
+.somaTr {
+    margin-left: 2%;
 }
 
 .actions {

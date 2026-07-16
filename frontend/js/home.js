@@ -1,7 +1,8 @@
 import { getTransactions, getGoal, getUser, deleteGoal, deleteTransaction, logout, checkToken } from "./api/api.js"
 import { addGoalDeleteEvent, addTrDeleteEvent, addGoalUpdateEvent } from "./services/addEvent.js";
-import { loadName } from "./services/load.js";
+import { loadName, loadSomaTr } from "./services/load.js";
 import { loadList } from "./ui/funcList.js";
+import { acharObjCondicional } from "./utils/utils.js";
 
 let goalsLabel = document.getElementById("goalsLabel")
 let transactionsLabel = document.getElementById("transactionsLabel")
@@ -28,6 +29,7 @@ getTransactions(token).then(async resposta => {
     
     loadList(resTransactionObj, "transaction")
     addTrDeleteEvent(token)
+    loadSomaTr(acharObjCondicional(resTransactionObj))
 });
 
 

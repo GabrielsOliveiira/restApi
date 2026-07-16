@@ -35,5 +35,10 @@ function loadTransctionsLabel(){
     transactionsLabel.textContent = tamTr == 0 ? "" : "Transações:"
 }
 
-export  { showErr, loadName, is_completed, loadMetasLabel, loadTransctionsLabel }
+function loadSomaTr(number){
+    const somaTr = document.getElementById("somaTr")
+    somaTr.textContent = number>=0 ? `Você recebeu ${number} reais` : `Você gastou ${number*-1} reais`
+}
+
+export  { showErr, loadName, is_completed, loadMetasLabel, loadTransctionsLabel, loadSomaTr }
 
