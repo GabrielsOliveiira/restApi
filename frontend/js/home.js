@@ -1,6 +1,6 @@
 import { getTransactions, getGoal, getUser, deleteGoal, deleteTransaction, logout, checkToken } from "./api/api.js"
 import { addGoalDeleteEvent, addTrDeleteEvent, addGoalUpdateEvent } from "./services/addEvent.js";
-import { loadName, loadSomaTr } from "./services/load.js";
+import { loadName, loadSomaTr, loadSumGo } from "./services/load.js";
 import { loadList } from "./ui/funcList.js";
 import { acharObjCondicional } from "./utils/utils.js";
 
@@ -23,8 +23,7 @@ getTransactions(token).then(async resposta => {
     const resTransactionObj = JSON.parse(resTransaction)
 
     if (resposta.status !== 200) {
-        localStorage.removeItem("token")
-        window.location.href = "index.html"
+        logout()
     }
     
     loadList(resTransactionObj, "transaction")
@@ -38,14 +37,16 @@ getGoal(token).then(async (resposta) =>{
     const resGoalObj = JSON.parse(resGoal)
 
     if (resposta.status !== 200) {
-        logout("index.html")
+        logout()
     }
 
     loadList(resGoalObj.goals, "goal")
     addGoalDeleteEvent(token)
     addGoalUpdateEvent(token)
+    loadSumGo()
+    console.log("loa")
 })
 
 left.addEventListener("click", (e) =>{
-    logout("index.html")
+    logout( )
 })

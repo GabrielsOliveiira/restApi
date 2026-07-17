@@ -35,8 +35,8 @@ function addLiGo(goal){
     <p>Meta: ${goal.target_amount}</p>
     <p>Criado em: ${created_at}</p>
     <p>Data limite: ${goal.dead_line ? dead_line : "Sem data marcada"}</p>
-    ${goal.dead_line && meses > 0? `<p>Faltam ${meses} meses</p>` : ""}
-    ${goal.dead_line && aportesNescessarios > 0? `<p>Invista: ${aportesNescessarios} por mês</p>` : ""}
+    <p>${goal.dead_line && meses > 0? `<p>Faltam ${meses} meses</p>` : ""}</p>
+    <p class="meta" data-value="${aportesNescessarios}">${goal.dead_line && aportesNescessarios > 0? `<p>Invista: ${aportesNescessarios} por mês</p>` : ""}</p>
     <p id="is_completed-${goal.id}">${goal.is_completed == true ? "Finalizado" : "Em andamento"}</p>
     <button id="${goal.id}" class="completed">${goal.is_completed == true ? "Desmarcar" : "Completar"}</button>
     <button type="button" class="btn-delete" id="${goal.id}">Delete</button>

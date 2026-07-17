@@ -141,9 +141,7 @@ async function createUser(name, email, senha) {
 
 function logout(goTo="index.html"){
     localStorage.removeItem("token")
-    if (goTo){
-        window.location.href = goTo
-    }
+    window.location.href = goTo
 }
 
 function checkToken(goTo="index.html"){

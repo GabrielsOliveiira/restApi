@@ -1,7 +1,6 @@
 import { deleteGoal, deleteTransaction, updateGoal, checkToken } from "../api/api.js"
 import { GoalUpdateEventDealer } from "../api/GoalUpdateEventDealer.js"
-import { is_completed } from "./load.js"
-import { loadMetasLabel, loadTransctionsLabel } from "./load.js"
+import { loadMetasLabel, loadTransctionsLabel, is_completed, loadSumGo } from "./load.js"
 
 const ulGo = document.getElementById("listGo")
 const ulTr = document.getElementById("listTr")
@@ -25,6 +24,7 @@ async function addGoalDeleteEvent(token){
             const resposta = await deleteGoal(token, button.id)
             deleteDealer(resposta, li)
             loadMetasLabel()
+            loadSumGo()
         })
     })
 }
