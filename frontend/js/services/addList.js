@@ -14,7 +14,7 @@ function addLiTr(transaction){
     const newLi = document.createElement("li");
     newLi.dataset.id = transaction.id
     newLi.innerHTML = `
-    <p>${transaction.type_of == "expense" ? "Gasto" : "Receita"} de: ${transaction.amount}</p>
+    <p class="transaction" data-amount="${transaction.amount}" data-type="${transaction.type_of}">${transaction.type_of == "expense" ? "Gasto" : "Receita"} de: ${transaction.amount}</p>
     <p>Categoria: ${traduzir(transaction.category)}</p>
     <p>Descrição: ${transaction.description}</p>
     <button type="button" class="btn-delete" id="${transaction.id}">Delete</button>

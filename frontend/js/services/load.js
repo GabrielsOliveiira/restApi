@@ -49,9 +49,27 @@ function loadSumGo(){
     somaGo.textContent = `Valor que deve juntar no mês: ${soma}`
 }
 
-function loadSomaTr(number){
+function loadSomaTr(){
+    const ulTr = document.getElementById("listTr")
     const somaTr = document.getElementById("somaTr")
-    somaTr.textContent = number>=0 ? `Você recebeu ${number} reais` : `Você gastou ${number*-1} reais`
+
+    const liTr = ulTr.querySelectorAll("li")
+
+    if (liTr.length <= 0){
+        somaTr.textContent = ""
+        return null
+    }
+
+    let soma = 0
+    liTr.forEach(li => {
+        const transaction = li.querySelector(".transaction")
+        let valor = parseFloat(transaction.dataset.amount)
+        transaction.dataset.type == "expense" ? valor *= -1 : null
+
+        soma += valor
+    })
+
+    somaTr.textContent = soma>=0 ? `Você recebeu ${soma} reais` : `Você gastou ${soma*-1} reais`
 }
 
 export  { showErr, loadName, is_completed, loadMetasLabel, loadTransctionsLabel, loadSomaTr, loadSumGo }

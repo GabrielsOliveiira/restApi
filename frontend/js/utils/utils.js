@@ -10,8 +10,4 @@ function mesesFaltando(data1, data2){
     return Math.floor(diff /(1000 * 60 * 60 * 30 * 24))
 }
 
-function acharObjCondicional(obj){
-    return obj.reduce((total, item) => item.type_of == "income" ? total + item.amount : total - item.amount, 0)
-}
-
-export { mesesFaltando, acharObjCondicional }
+export { mesesFaltando }

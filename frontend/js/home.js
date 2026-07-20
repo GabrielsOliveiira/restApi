@@ -2,7 +2,6 @@ import { getTransactions, getGoal, getUser, deleteGoal, deleteTransaction, logou
 import { addGoalDeleteEvent, addTrDeleteEvent, addGoalUpdateEvent } from "./services/addEvent.js";
 import { loadName, loadSomaTr, loadSumGo } from "./services/load.js";
 import { loadList } from "./ui/funcList.js";
-import { acharObjCondicional } from "./utils/utils.js";
 
 let goalsLabel = document.getElementById("goalsLabel")
 let transactionsLabel = document.getElementById("transactionsLabel")
@@ -28,7 +27,7 @@ getTransactions(token).then(async resposta => {
     
     loadList(resTransactionObj, "transaction")
     addTrDeleteEvent(token)
-    loadSomaTr(acharObjCondicional(resTransactionObj))
+    loadSomaTr()
 });
 
 
@@ -44,7 +43,6 @@ getGoal(token).then(async (resposta) =>{
     addGoalDeleteEvent(token)
     addGoalUpdateEvent(token)
     loadSumGo()
-    console.log("loa")
 })
 
 left.addEventListener("click", (e) =>{
