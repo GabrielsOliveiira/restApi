@@ -13,6 +13,7 @@ function traduzir(categoria){
 function addLiTr(transaction){
     const newLi = document.createElement("li");
     newLi.dataset.id = transaction.id
+    newLi.className = "transaction"
     newLi.innerHTML = `
     <p class="transaction" data-amount="${transaction.amount}" data-type="${transaction.type_of}">${transaction.type_of == "expense" ? "Gasto" : "Receita"} de: ${transaction.amount}</p>
     <p>Categoria: ${traduzir(transaction.category)}</p>
@@ -30,6 +31,7 @@ function addLiGo(goal){
 
     const newLi = document.createElement("li");
     newLi.dataset.idGo = goal.id
+    newLi.className = "metas"
     newLi.innerHTML = `
     <p class="nameGoal">${goal.name}</p>
     <p>Meta: ${goal.target_amount}</p>

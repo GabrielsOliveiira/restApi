@@ -9,12 +9,18 @@
 </head>
 <body>
     <h1 id="name"></h1>
-    <p id="transactionsLabel"></p>
-    <ul id="listTr"></ul>
-    <p id="somaTr" class="somaTr"></p>
-    <p id="goalsLabel"></p>
-    <ul id="listGo"></ul>
-    <p id="somaGo"></p>
+    <div>
+        <p class="transaction" id="transactionsLabel"></p>
+        <ul class="transaction" id="listTr"></ul>
+        <p id="somaTr" class="somaTr"></p>
+        <button id="esconder-transacoes" class="btn-esconder">Esconder transações</button>
+    </div>
+    <div>
+        <p class="metas" id="goalsLabel"></p>
+        <ul class="metas" id="listGo"></ul>
+        <p id="somaGo"></p>
+        <button id="esconder-metas" class="btn-esconder">Esconder metas</button>
+    </div>
     <div class="actions">
         <a href="addTransaction.html">Adicionar transação</a>
         <a href="addGoal.html">Adicionar meta</a>

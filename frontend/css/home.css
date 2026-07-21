@@ -73,12 +73,14 @@ button {
     background: #e74c3c;
 }
 
-.btn-delete:hover {
-    background: #c0392b;
+.btn-esconder{
+    margin: 20px;
+
+    background: #2d3333;
 }
 
-.somaTr {
-    margin-left: 2%;
+.btn-delete:hover {
+    background: #c0392b;
 }
 
 .actions {

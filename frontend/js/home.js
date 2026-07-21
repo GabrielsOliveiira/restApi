@@ -11,6 +11,8 @@ let token = localStorage.getItem("token")
 const ulGo = document.getElementById("listGo")
 const ulTr = document.getElementById("listTr")
 const left = document.getElementById("logout")
+const hideTransacoes = document.getElementById("esconder-transacoes")
+const hideMetas = document.getElementById("esconder-metas")
 
 let nome = await getUser(token)
 loadName(`Bem vindo ${nome.name} !!!`)
@@ -46,5 +48,21 @@ getGoal(token).then(async (resposta) =>{
 })
 
 left.addEventListener("click", (e) =>{
-    logout( )
+    logout()
+})
+
+hideTransacoes.addEventListener("click", (e) =>{
+    hideTransacoes.textContent = hideTransacoes.textContent == "Esconder transações" ? "Mostrar transações" : "Esconder transações"
+    const transactions = document.querySelectorAll(".transaction")
+    transactions.forEach(element => {
+        element.style.display = hideTransacoes.textContent == "Esconder transações" ? "block" : "none"
+    });
+})
+
+hideMetas.addEventListener("click", (e) =>{
+    hideMetas.textContent = hideMetas.textContent == "Esconder metas" ? "Mostrar metas" : "Esconder metas"
+    const metas = document.querySelectorAll(".metas")
+    metas.forEach(meta => {
+        meta.style.display = hideMetas.textContent == "Esconder metas" ? "block" : "none"
+    })
 })
