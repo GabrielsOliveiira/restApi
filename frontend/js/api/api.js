@@ -139,6 +139,18 @@ async function createUser(name, email, senha) {
     return objResponse
 }
 
+async function exportExcel(token) {
+    const response = await fetch("http://127.0.0.1:5000/export/excel",{
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+        },
+    })
+    
+    return response.blob();
+}
+
 function logout(goTo="index.html"){
     localStorage.removeItem("token")
     window.location.href = goTo
@@ -152,4 +164,4 @@ function checkToken(goTo="index.html"){
     }
 }
 
-export { sendApi, getTransactions, sendTransaction, deleteTransaction, getGoal, createGoal, deleteGoal, updateGoal, getUser, createUser, getExpecificGoal, logout, checkToken }
+export { sendApi, getTransactions, sendTransaction, deleteTransaction, getGoal, createGoal, deleteGoal, updateGoal, getUser, createUser, getExpecificGoal, logout, checkToken, exportExcel }

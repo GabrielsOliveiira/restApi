@@ -1,4 +1,4 @@
-import { getTransactions, getGoal, getUser, deleteGoal, deleteTransaction, logout, checkToken } from "./api/api.js"
+import { getTransactions, getGoal, getUser, deleteGoal, deleteTransaction, logout, checkToken, exportExcel } from "./api/api.js"
 import { addGoalDeleteEvent, addTrDeleteEvent, addGoalUpdateEvent } from "./services/addEvent.js";
 import { loadName, loadSomaTr, loadSumGo } from "./services/load.js";
 import { loadList } from "./ui/funcList.js";
@@ -13,6 +13,7 @@ const ulTr = document.getElementById("listTr")
 const left = document.getElementById("logout")
 const hideTransacoes = document.getElementById("esconder-transacoes")
 const hideMetas = document.getElementById("esconder-metas")
+const exportExcelTr = document.getElementById("exportExcel")
 
 let nome = await getUser(token)
 loadName(`Bem vindo ${nome.name} !!!`)
@@ -65,4 +66,20 @@ hideMetas.addEventListener("click", (e) =>{
     metas.forEach(meta => {
         meta.style.display = hideMetas.textContent == "Esconder metas" ? "block" : "none"
     })
+})
+
+exportExcelTr.addEventListener("click", async (e) =>{
+    const blob = await exportExcel(token)
+
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "transacoes.xlsx";
+
+    document.body.appendChild(a);
+    a.click();
+
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
 })

@@ -41,6 +41,11 @@ function loadSumGo(){
 
     const liGo = ulGo.querySelectorAll("li")
 
+    if (liGo.length <= 0){
+        somaTr.textContent = ""
+        return null
+    }
+
     let soma = 0
     liGo.forEach(li => {
         const meta = li.querySelector(".meta")
